@@ -152,12 +152,39 @@ FROM AccountTable WHERE CustomerID = '7811230250089';
 -- Displaying overview of all transactions for all Checking accounts linked to a CustomerID
 
 -- S A R A H ' S   T R A N S A C T I O N S
-SELECT CustomerID, AccountType, a.AccountNumber, TransactionDate, Amount, TransactionType
-FROM AccountTable AS a, TransactionTable AS t WHERE CustomerID = '8505150100057' AND AccountType = 'Checking';
+SELECT 
+    a.AccountNumber,
+    a.AccountType,
+    t.TransactionID,
+    t.Amount,
+    t.TransactionType,
+    t.TransactionDate
+FROM 
+    CustomerTable AS c
+INNER JOIN 
+    AccountTable a ON c.CustomerID = a.CustomerID
+INNER JOIN 
+    TransactionTable t ON a.AccountNumber = t.AccountNumber
+WHERE 
+    a.AccountType = 'Checking' AND a.CustomerID = '8505150100057';
 
 -- B O B ' S   T R A N S A C T I O N S
-SELECT CustomerID, AccountType, a.AccountNumber, TransactionDate, Amount, TransactionType
-FROM AccountTable AS a, TransactionTable AS t WHERE CustomerID = '7811230250089' AND AccountType = 'Checking';
+SELECT 
+    a.AccountNumber,
+    a.AccountType,
+    t.TransactionID,
+    t.Amount,
+    t.TransactionType,
+    t.TransactionDate
+FROM 
+    CustomerTable AS c
+INNER JOIN 
+    AccountTable a ON c.CustomerID = a.CustomerID
+INNER JOIN 
+    TransactionTable t ON a.AccountNumber = t.AccountNumber
+WHERE 
+    a.AccountType = 'Checking' AND a.CustomerID = '7811230250089';
+
 
 --     S  T  A  G  E  4     --
 -- Connecting mySQL in Java programming
